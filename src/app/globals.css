@@ -1,0 +1,354 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Noto+Sans+Kannada:wght@400;700&family=Noto+Sans+Malayalam:wght@400;700&family=Noto+Sans+Tamil:wght@400;700&family=Noto+Sans+Telugu:wght@400;700&display=swap');
+@import "tailwindcss";
+
+@theme inline {
+  --font-cinzel: var(--font-cinzel), serif;
+  --font-cinzel-alt: var(--font-cinzel-alt), serif;
+  --font-rajdhani: var(--font-rajdhani), sans-serif;
+  --font-lato: var(--font-lato), sans-serif;
+
+  /* Forest Command Palette */
+  --color-forest-mint: #F0FAF0;
+  --color-forest-deep: #1A4731;
+  --color-forest-emerald: #16A34A;
+  --color-forest-charcoal: #1A1A1A;
+  --color-forest-slate: #374151;
+  --color-forest-grey: #6B7280;
+  --color-forest-gold: #D97706;
+  --color-forest-amber: #F59E0B;
+  --color-forest-red: #DC2626;
+  --color-forest-bright: #22C55E;
+  
+  --color-monitor-bg: #0F2D1F;
+  --color-monitor-card: #1A3D2B;
+  --color-monitor-mint: #86EFAC;
+  --color-monitor-electric: #4ADE80;
+  --color-monitor-amber: #FCD34D;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-bio-black);
+    color: var(--color-bio-cream);
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    background-color: rgb(241 248 241 / 0.9);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgb(26 71 49 / 0.25);
+    box-shadow: 0 0 15px rgb(26 71 49 / 0.15);
+  }
+
+  .glass-card {
+    background-color: rgb(241 248 241 / 0.95);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgb(26 71 49 / 0.25);
+    box-shadow: 0 8px 30px rgb(26 71 49 / 0.08);
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
+
+  .glass-card:hover {
+    border-color: #1A4731;
+    box-shadow: 0 8px 30px rgb(26 71 49 / 0.3);
+    transform: translateY(-0.25rem);
+  }
+
+  .btn-magnetic {
+    position: relative;
+    overflow: hidden;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
+  
+  .btn-magnetic:active {
+    transform: scale(0.95);
+  }
+
+  .btn-magnetic:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgb(26 71 49 / 0.4);
+  }
+
+  .neon-text-green {
+    animation: arivu-shimmer 3s infinite alternate ease-in-out;
+  }
+
+  .neon-text-gold {
+    text-shadow: 0 0 10px rgba(249, 168, 37, 0.7), 0 0 20px rgba(249, 168, 37, 0.5);
+  }
+
+  .neon-underline {
+    position: relative;
+    padding-bottom: 0.25rem;
+  }
+
+  .neon-underline::after {
+    content: '';
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-forest-gold);
+    transform-origin: left;
+    transform: scaleX(0);
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+    box-shadow: 0 0 8px rgba(249, 168, 37, 0.8);
+  }
+
+  .neon-underline:focus-within::after,
+  .neon-underline:hover::after {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes arivu-shimmer {
+  0% {
+    color: #2E7D32;
+    text-shadow: 0 0 15px rgba(46, 125, 50, 0.5);
+  }
+
+  100% {
+    color: #F9A825;
+    text-shadow: 0 0 20px rgba(249, 168, 37, 0.7);
+  }
+}
+
+@keyframes glow-pulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 15px rgba(249, 168, 37, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 25px rgba(249, 168, 37, 0.8);
+  }
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 3s infinite ease-in-out;
+}
+
+@keyframes radar-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.animate-radar {
+  animation: radar-pulse 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+/* Phase 5 Typography & Translation Locks */
+* {
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+  box-sizing: border-box !important;
+}
+
+/* Container rules */
+.card, .panel, .settings-tab, .stat-item, .sensor-card, .role-card-desc {
+  min-height: fit-content !important;
+  height: auto !important;
+}
+
+/* Nav & Button truncation */
+button, .nav-item, .tab-label, .text-nav-fixed {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  max-width: 100% !important;
+  flex-shrink: 0;
+}
+
+/* Global Typography */
+body {
+  font-family: 'Noto Sans', 'Noto Sans Tamil', 'Noto Sans Telugu', 'Noto Sans Kannada', 'Noto Sans Malayalam', sans-serif !important;
+  font-size: 14px !important;
+  line-height: normal !important; /* Changed from 1.6 to help vertical alignment */
+}
+
+h1 { font-size: 24px !important; line-height: 1.2 !important; }
+h2 { font-size: 20px !important; line-height: 1.2 !important; }
+h3 { font-size: 17px !important; line-height: 1.2 !important; }
+p, label, span, td, th { font-size: 14px !important; line-height: 1.5 !important; }
+small, .muted, .text-muted-fixed { font-size: 12px !important; }
+
+/* Fixed Typography Classes - Overriding old ones for total consistency */
+.text-heading-fixed { font-size: 24px !important; font-weight: 700 !important; }
+.text-subheading-fixed { font-size: 18px !important; font-weight: 700 !important; }
+.text-card-title-fixed { font-size: 16px !important; font-weight: 700 !important; }
+.text-body-fixed { font-size: 14px !important; }
+.text-label-fixed { font-size: 13px !important; }
+.text-button-fixed { font-size: 12px !important; font-weight: 700 !important; letter-spacing: 0.05em !important; }
+.text-nav-fixed { font-size: 12px !important; font-weight: 700 !important; letter-spacing: 0.02em !important; }
+
+/* Language Specific Adjustments */
+[lang="ta"] *, [lang="te"] *, [lang="hi"] *, [lang="kn"] *, [lang="ml"] *, [lang="mr"] *, [lang="gu"] * {
+  line-height: 1.6 !important; /* Indic languages need slightly more height */
+  letter-spacing: normal !important;
+}
+
+/* Stats Strip Specific (FIX 2) */
+.stats-strip {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 12px !important;
+  background: rgba(255, 255, 255, 0.7) !important;
+  backdrop-filter: blur(12px) !important;
+  padding: 10px 20px !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(22, 163, 74, 0.2) !important;
+  width: 100% !important;
+  max-width: 900px !important;
+}
+
+.stat-item {
+  min-width: 140px !important;
+  max-width: 200px !important;
+  text-align: center !important;
+  padding: 8px 16px !important;
+  word-break: break-word !important;
+  white-space: normal !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.stat-divider {
+  display: none !important; /* Gap 16px handles it better in wrapping */
+}
+
+/* Role Selection Cards Padding & Wrap */
+.role-card-desc {
+  padding: 12px !important;
+  word-wrap: break-word !important;
+}
+
+/* Global overrides for common tags */
+h1, h2, h3 { font-size: 24px !important; }
+h4 { font-size: 18px !important; }
+p, div, span { font-size: 14px !important; }
+label, button, input, select, textarea { font-size: 13px !important; }
+small { font-size: 11px !important; }
+
+/* Layout Fixes */
+.auto-height-container {
+  min-height: auto !important;
+  height: auto !important;
+}
+
+.card-container, .panel-container {
+  min-height: 100px;
+  height: auto !important;
+}
+
+/* Centering Fix for Farmer Avatar */
+.farmer-avatar-center {
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+}
+
+/* Safe Wraps and Containers */
+.safe-wrap {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap;
+}
+
+.min-h-card {
+  min-height: 150px;
+}
+
+/* Marquee Animation (Landing Page ticker) */
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-marquee {
+  display: inline-block;
+  animation: marquee 30s linear infinite;
+  will-change: transform;
+}
+
+/* Crop Monitor - Toggle Checkbox Gold */
+.toggle-checkbox-gold {
+  appearance: none;
+  width: 30px;
+  height: 16px;
+  background: #0F2D1F;
+  border: 1px solid rgba(74,222,128,0.5);
+  border-radius: 10px;
+  position: relative;
+  outline: none;
+  cursor: pointer;
+}
+
+.toggle-checkbox-gold:checked {
+  background: #FCD34D;
+  border-color: #FCD34D;
+}
+
+.toggle-checkbox-gold::before {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  top: 1px;
+  left: 2px;
+  background: #86EFAC;
+  transition: 0.3s;
+}
+
+.toggle-checkbox-gold:checked::before {
+  transform: translateX(14px);
+  background: #0F2D1F;
+}
+
+/* Crop Monitor - Custom Slider Gold */
+.custom-slider-gold::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #FCD34D;
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(252, 211, 77, 0.5);
+}
+
+/* Crop Monitor - Spin Animations */
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes spin-fast {
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 3s linear infinite;
+}
+
+.animate-spin-fast {
+  animation: spin-fast 0.5s linear infinite;
+}
